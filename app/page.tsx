@@ -15,7 +15,7 @@ interface GameItem {
   status: 'ready' | 'coming_soon';
   badge: string;
   icon: string;
-  color: string; // Gradient accent color
+  color: string; // Gradient accent color for light mode
 }
 
 const GAMES_DATA: GameItem[] = [
@@ -30,7 +30,7 @@ const GAMES_DATA: GameItem[] = [
     status: 'ready',
     badge: 'Đã sẵn sàng',
     icon: '🧩',
-    color: 'from-emerald-500/20 to-teal-500/10 border-emerald-500/30 text-emerald-400',
+    color: 'from-emerald-100 to-teal-50 border-emerald-200 text-emerald-700 shadow-emerald-100/50',
   },
   {
     id: 'stats-mode',
@@ -43,7 +43,7 @@ const GAMES_DATA: GameItem[] = [
     status: 'coming_soon',
     badge: 'Sắp ra mắt',
     icon: '📊',
-    color: 'from-sky-500/20 to-blue-500/10 border-sky-500/30 text-sky-400',
+    color: 'from-sky-100 to-blue-50 border-sky-200 text-sky-700 shadow-sky-100/50',
   },
   {
     id: 'vector-maze',
@@ -56,7 +56,7 @@ const GAMES_DATA: GameItem[] = [
     status: 'coming_soon',
     badge: 'Đang phát triển',
     icon: '📐',
-    color: 'from-indigo-500/20 to-purple-500/10 border-indigo-500/30 text-indigo-400',
+    color: 'from-indigo-100 to-purple-50 border-indigo-200 text-indigo-700 shadow-indigo-100/50',
   },
   {
     id: 'prob-recycling',
@@ -69,7 +69,7 @@ const GAMES_DATA: GameItem[] = [
     status: 'coming_soon',
     badge: 'Sắp ra mắt',
     icon: '♻️',
-    color: 'from-amber-500/20 to-orange-500/10 border-amber-500/30 text-amber-400',
+    color: 'from-amber-100 to-orange-50 border-amber-200 text-amber-700 shadow-amber-100/50',
   },
   {
     id: 'geometry-bisector',
@@ -82,7 +82,7 @@ const GAMES_DATA: GameItem[] = [
     status: 'coming_soon',
     badge: 'Dự kiến Q4',
     icon: '📏',
-    color: 'from-pink-500/20 to-rose-500/10 border-pink-500/30 text-pink-400',
+    color: 'from-pink-100 to-rose-50 border-pink-200 text-pink-700 shadow-pink-100/50',
   },
 ];
 
@@ -114,43 +114,47 @@ export default function HomePage() {
   }, [selectedGrade, selectedGenre, selectedTopic, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-emerald-500 selection:text-slate-950">
-      {/* Background Glow Deco */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-emerald-600/15 via-indigo-600/10 to-transparent blur-3xl pointer-events-none -z-10" />
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-emerald-200 selection:text-slate-900">
+      {/* Background Subtle Gradient for Light Mode */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-emerald-100/50 via-sky-50/30 to-transparent blur-3xl pointer-events-none -z-10" />
 
       {/* Header / Hero Section */}
-      <header className="max-w-6xl mx-auto px-4 pt-12 pb-8 text-center">
-        <div className="inline-flex items-center gap-2 bg-slate-900/80 border border-slate-800 text-emerald-400 text-xs px-4 py-1.5 rounded-full shadow-inner mb-6 backdrop-blur">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>CỔNG HỌC TẬP TOÁN TƯƠNG TÁC THCS & THPT</span>
+      <header className="max-w-6xl mx-auto px-4 pt-16 pb-12 text-center">
+        <div className="inline-flex items-center gap-2 bg-white border border-slate-200 text-emerald-600 text-xs px-4 py-1.5 rounded-full shadow-sm mb-6">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="font-semibold tracking-wide">CỔNG HỌC TẬP TOÁN TƯƠNG TÁC</span>
         </div>
-        <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">
-          Chơi Để Giỏi Toán
+        
+        {/* Tiêu đề mới bằng tiếng Anh */}
+        <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 mb-5">
+          Math Quest: <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Unlock Your Potential</span>
         </h1>
-        <p className="text-slate-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+        
+        <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
           Nền tảng bài học trực quan, biến công thức khô khan thành các thử thách game nhập vai kịch tính cho học sinh từ Lớp 6 đến Lớp 12.
         </p>
 
         {/* Quick Stats Badges */}
-        <div className="flex flex-wrap justify-center gap-6 mt-8 text-xs font-mono text-slate-400">
-          <div className="flex items-center gap-2 bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800">
-            <span className="text-emerald-400 font-bold">100%</span> Chuẩn chương trình GDPT
+        <div className="flex flex-wrap justify-center gap-4 mt-8 text-xs font-medium text-slate-600">
+          <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm">
+            <span className="text-emerald-600 text-lg">📚</span> 100% Chuẩn GDPT
           </div>
-          <div className="flex items-center gap-2 bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800">
-            <span className="text-emerald-400 font-bold">Gamified</span> Học tập trải nghiệm
+          <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm">
+            <span className="text-emerald-600 text-lg">🎮</span> Học tập Gamified
           </div>
-          <div className="flex items-center gap-2 bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800">
-            <span className="text-emerald-400 font-bold">AI Tutor</span> Gợi ý thông minh
+          <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm">
+            <span className="text-emerald-600 text-lg">🤖</span> AI Gợi ý thông minh
           </div>
         </div>
       </header>
 
       {/* Bảng Điều Khiển Bộ Lọc & Tìm Kiếm */}
-      <section className="max-w-6xl mx-auto px-4 mb-10">
-        <div className="bg-slate-900/90 border border-slate-800 p-6 rounded-3xl shadow-2xl backdrop-blur-xl">
+      <section className="max-w-6xl mx-auto px-4 mb-12">
+        <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-[2rem] shadow-xl shadow-slate-200/50">
           {/* Ô Tìm Kiếm Chính */}
-          <div className="relative mb-6">
-            <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+          <div className="relative mb-8">
+            <span className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 text-lg">
               🔍
             </span>
             <input
@@ -158,36 +162,36 @@ export default function HomePage() {
               placeholder="Tìm theo tên bài học, từ khóa (ví dụ: Số nguyên tố, Vector, Thống kê)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-950/80 border border-slate-800 rounded-2xl pl-11 pr-4 py-3.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-emerald-500/70 focus:ring-2 focus:ring-emerald-500/20 transition shadow-inner"
+              className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl pl-12 pr-12 py-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all font-medium"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute inset-y-0 right-0 pr-4 flex items-center text-xs text-slate-500 hover:text-slate-300"
+                className="absolute inset-y-0 right-0 pr-5 flex items-center text-slate-400 hover:text-slate-600 font-semibold"
               >
-                Xóa
+                ✕
               </button>
             )}
           </div>
 
           {/* Dãy Thẻ Chọn Chủ Đề Học Hot */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-bold text-slate-400 tracking-wider uppercase flex items-center gap-1.5">
-                <span>🏷️</span> CHỦ ĐỀ HỌC TRỌNG TÂM
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-xs font-bold text-slate-500 tracking-wider uppercase flex items-center gap-1.5">
+                <span>🏷️</span> CHỦ ĐỀ TRỌNG TÂM
               </label>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5">
               {HOT_TOPICS.map((topic) => {
                 const isActive = selectedTopic === topic;
                 return (
                   <button
                     key={topic}
                     onClick={() => setSelectedTopic(topic)}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 ${
+                    className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                       isActive
-                        ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20 scale-105'
-                        : 'bg-slate-950 border border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                        ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30 scale-105'
+                        : 'bg-white border-2 border-slate-100 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
                     }`}
                   >
                     {topic}
@@ -198,48 +202,58 @@ export default function HomePage() {
           </div>
 
           {/* Bộ Lọc Theo Khối Lớp & Thể Loại */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800/80">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-6 border-t border-slate-100">
             {/* Chọn Khối Lớp */}
             <div>
-              <label className="block text-xs font-bold text-slate-400 tracking-wider uppercase mb-2">
+              <label className="block text-xs font-bold text-slate-500 tracking-wider uppercase mb-2">
                 🎓 KHỐI LỚP
               </label>
-              <select
-                value={selectedGrade}
-                onChange={(e) => setSelectedGrade(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-emerald-500 cursor-pointer"
-              >
-                {GRADES.map((grade) => (
-                  <option key={grade} value={grade}>
-                    {grade}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  value={selectedGrade}
+                  onChange={(e) => setSelectedGrade(e.target.value)}
+                  className="w-full bg-white border-2 border-slate-100 rounded-xl pl-4 pr-10 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer transition-colors"
+                >
+                  {GRADES.map((grade) => (
+                    <option key={grade} value={grade}>
+                      {grade}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                  ▼
+                </div>
+              </div>
             </div>
 
             {/* Chọn Thể Loại Game */}
             <div>
-              <label className="block text-xs font-bold text-slate-400 tracking-wider uppercase mb-2">
-                🎮 THỂ LOẠI GAME
+              <label className="block text-xs font-bold text-slate-500 tracking-wider uppercase mb-2">
+                🎮 THỂ LOẠI
               </label>
-              <select
-                value={selectedGenre}
-                onChange={(e) => setSelectedGenre(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-emerald-500 cursor-pointer"
-              >
-                {GENRES.map((genre) => (
-                  <option key={genre} value={genre}>
-                    {genre}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  value={selectedGenre}
+                  onChange={(e) => setSelectedGenre(e.target.value)}
+                  className="w-full bg-white border-2 border-slate-100 rounded-xl pl-4 pr-10 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:border-emerald-500 appearance-none cursor-pointer transition-colors"
+                >
+                  {GENRES.map((genre) => (
+                    <option key={genre} value={genre}>
+                      {genre}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                  ▼
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Thanh trạng thái bộ lọc */}
-          <div className="flex flex-wrap justify-between items-center text-xs text-slate-500 pt-4 mt-4 border-t border-slate-800/50">
+          <div className="flex flex-wrap justify-between items-center text-sm font-medium text-slate-500 pt-6 mt-6 border-t border-slate-100">
             <span>
-              Tìm thấy <strong className="text-emerald-400 font-bold">{filteredGames.length}</strong> trò chơi phù hợp
+              Tìm thấy <strong className="text-emerald-600 text-base">{filteredGames.length}</strong> trò chơi
             </span>
             {(selectedGrade !== 'Tất cả' ||
               selectedGenre !== 'Tất cả' ||
@@ -252,9 +266,9 @@ export default function HomePage() {
                   setSelectedTopic('Tất cả chủ đề');
                   setSearchQuery('');
                 }}
-                className="text-emerald-400 hover:text-emerald-300 transition underline underline-offset-4"
+                className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-1.5 rounded-lg transition-colors"
               >
-                Đặt lại tất cả bộ lọc
+                ↺ Đặt lại bộ lọc
               </button>
             )}
           </div>
@@ -262,63 +276,63 @@ export default function HomePage() {
       </section>
 
       {/* Danh Sách Thẻ Bài Học / Games Grid */}
-      <main className="max-w-6xl mx-auto px-4 mb-16 flex-1">
+      <main className="max-w-6xl mx-auto px-4 mb-20 flex-1">
         {filteredGames.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredGames.map((game) => {
               const isReady = game.status === 'ready';
 
               return (
                 <div
                   key={game.id}
-                  className={`group relative flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 ${
+                  className={`group relative flex flex-col justify-between p-7 rounded-[2rem] bg-white transition-all duration-300 ${
                     isReady
-                      ? 'bg-slate-900/80 border-slate-800 hover:border-slate-700 hover:shadow-2xl hover:-translate-y-1'
-                      : 'bg-slate-900/30 border-slate-900/80 opacity-60'
+                      ? 'border border-slate-200 hover:border-emerald-300 shadow-md hover:shadow-xl hover:shadow-emerald-100/50 hover:-translate-y-1.5'
+                      : 'border border-slate-100 opacity-80 shadow-sm'
                   }`}
                 >
                   <div>
                     {/* Header Thẻ: Icon & Badges */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl bg-gradient-to-br ${game.color} border shadow-inner`}>
+                    <div className="flex items-start justify-between mb-5">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl bg-gradient-to-br ${game.color} border shadow-inner`}>
                         {game.icon}
                       </div>
-                      <div className="flex flex-col items-end gap-1">
-                        <span className="text-[10px] px-2.5 py-0.5 rounded-full font-mono font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                      <div className="flex flex-col items-end gap-1.5">
+                        <span className="text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider bg-slate-100 text-slate-600">
                           {game.grade}
                         </span>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-slate-950 text-emerald-400 border border-emerald-900/50">
+                        <span className="text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700">
                           {game.genre}
                         </span>
                       </div>
                     </div>
 
                     {/* Tiêu đề & Chủ đề */}
-                    <h2 className="text-lg font-bold text-white group-hover:text-emerald-400 transition mb-1">
+                    <h2 className="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
                       {game.title}
                     </h2>
-                    <div className="inline-block text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 mb-3">
-                      Chủ đề: {game.topic}
+                    <div className="inline-block text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg mb-4">
+                      {game.topic}
                     </div>
 
-                    <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
+                    <p className="text-slate-600 text-sm leading-relaxed mb-8">
                       {game.description}
                     </p>
                   </div>
 
                   {/* Nút thao tác */}
-                  <div>
+                  <div className="mt-auto">
                     {isReady ? (
                       <Link
                         href={game.href}
-                        className="block w-full text-center py-3 px-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-extrabold text-sm rounded-2xl shadow-lg shadow-emerald-500/20 transition transform active:scale-95"
+                        className="block w-full text-center py-3.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm rounded-xl shadow-md shadow-emerald-200 transition-all transform active:scale-[0.98]"
                       >
-                        Bắt đầu thử thách 🚀
+                        Bắt đầu ngay 🚀
                       </Link>
                     ) : (
                       <button
                         disabled
-                        className="w-full py-3 px-4 bg-slate-800/50 text-slate-500 font-semibold text-xs rounded-2xl cursor-not-allowed border border-slate-800"
+                        className="w-full py-3.5 px-4 bg-slate-50 text-slate-400 font-semibold text-sm rounded-xl border border-slate-200 cursor-not-allowed"
                       >
                         Chưa mở khóa ({game.badge})
                       </button>
@@ -330,11 +344,11 @@ export default function HomePage() {
           </div>
         ) : (
           /* Trạng thái không tìm thấy bài học */
-          <div className="text-center py-20 bg-slate-900/50 rounded-3xl border border-slate-800">
-            <span className="text-5xl mb-4 block">🔍</span>
-            <h3 className="text-lg font-bold text-slate-200 mb-1">Không tìm thấy bài học nào phù hợp</h3>
-            <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto mb-6">
-              Hãy thử chọn từ khóa khác hoặc bấm nút đặt lại bộ lọc để tìm kiếm lại.
+          <div className="text-center py-24 bg-white rounded-[2rem] border border-slate-200 shadow-sm">
+            <span className="text-6xl mb-6 block opacity-50">🔍</span>
+            <h3 className="text-xl font-bold text-slate-800 mb-2">Không tìm thấy bài học</h3>
+            <p className="text-slate-500 max-w-md mx-auto mb-8">
+              Chúng tôi không tìm thấy kết quả phù hợp với bộ lọc hiện tại. Vui lòng thử lại với từ khóa hoặc tùy chọn khác.
             </p>
             <button
               onClick={() => {
@@ -343,17 +357,17 @@ export default function HomePage() {
                 setSelectedTopic('Tất cả chủ đề');
                 setSearchQuery('');
               }}
-              className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 font-medium text-xs rounded-xl border border-slate-700 transition"
+              className="px-6 py-3 bg-white hover:bg-slate-50 text-emerald-600 font-bold text-sm rounded-xl border-2 border-slate-200 transition-colors shadow-sm"
             >
-              Đặt lại bộ lọc
+              Đặt lại tất cả bộ lọc
             </button>
           </div>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="max-w-6xl mx-auto px-4 py-8 text-center border-t border-slate-900 text-xs text-slate-600">
-        Nền tảng Giáo dục Toán học Tương tác THCS & THPT &bull; Xây dựng bằng Next.js, Tailwind CSS & Vercel
+      <footer className="max-w-6xl mx-auto px-4 py-8 text-center border-t border-slate-200 text-sm font-medium text-slate-500">
+        Nền tảng Giáo dục Toán học THCS & THPT &bull; Xây dựng bằng Next.js & Tailwind CSS
       </footer>
     </div>
   );
